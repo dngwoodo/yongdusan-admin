@@ -1,0 +1,55 @@
+{
+  "name": "yongdusan-admin",
+  "private": true,
+  "sideEffects": false,
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix dev",
+    "start": "remix-serve build",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/server": "^11.10.0",
+    "@mantine/core": "^5.5.4",
+    "@mantine/dates": "^5.5.4",
+    "@mantine/hooks": "^5.5.4",
+    "@mantine/modals": "^5.5.4",
+    "@mantine/notifications": "^5.5.4",
+    "@mantine/remix": "^5.5.4",
+    "@remix-run/node": "^1.6.5",
+    "@remix-run/react": "^1.6.5",
+    "@remix-run/serve": "^1.6.5",
+    "dayjs": "^1.11.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tiny-invariant": "^1.2.0"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^1.6.5",
+    "@remix-run/eslint-config": "^1.6.5",
+    "@testing-library/dom": "^8.16.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^14.3.0",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.0",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "happy-dom": "^6.0.4",
+    "msw": "^0.44.2",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.2",
+    "vite-tsconfig-paths": "^3.5.0",
+    "vitest": "^0.19.0"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "msw": {
+    "workerDirectory": "public"
+  }
+}
