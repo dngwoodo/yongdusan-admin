@@ -8,11 +8,18 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import { createEmotionCache, MantineProvider } from "@mantine/core";
+import type { ColorScheme } from "@mantine/core";
+import {
+  ColorSchemeProvider,
+  createEmotionCache,
+  MantineProvider,
+} from "@mantine/core";
 import resetStyle from "~/styles/reset.css";
 import globalStyle from "~/styles/global.css";
 import fontStyle from "~/styles/font.css";
 import { setupMocks } from "../test/mocks";
+import { Layout } from "~/components/layout/Layout";
+import { useState } from "react";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -50,30 +57,45 @@ export async function loader() {
 
 export default function App() {
   const data = useLoaderData();
+  const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
+
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
   if (data.ENV.REMIX_PUBLIC_API_MOCKING) {
     setupMocks();
   }
 
   return (
-    <MantineProvider withGlobalStyles withNormalizeCSS>
-      <html lang="en">
-        <head>
-          <Meta />
-          <Links />
-        </head>
-        <body>
-          <Outlet />
-          <ScrollRestoration />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.ENV = ${JSON.stringify(data.ENV)}`,
-            }}
-          />
-          <Scripts />
-          <LiveReload />
-        </body>
-      </html>
-    </MantineProvider>
+    <ColorSchemeProvider
+      colorScheme={colorScheme}
+      toggleColorScheme={toggleColorScheme}
+    >
+      <MantineProvider
+        theme={{ colorScheme }}
+        withGlobalStyles
+        withNormalizeCSS
+      >
+        <html lang="en">
+          <head>
+            <Meta />
+            <Links />
+          </head>
+          <body>
+            <Layout>
+              <Outlet />
+            </Layout>
+            <ScrollRestoration />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.ENV = ${JSON.stringify(data.ENV)}`,
+              }}
+            />
+            <Scripts />
+            <LiveReload />
+          </body>
+        </html>
+      </MantineProvider>
+    </ColorSchemeProvider>
   );
 }
