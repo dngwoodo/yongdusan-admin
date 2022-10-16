@@ -1,7 +1,10 @@
 import { Navbar, ScrollArea } from "@mantine/core";
 import NavbarLinkList from "~/components/layout/NavbarLinkList";
+import { useSidebar } from "~/components/layout/Layout";
 
-export function NavbarBody({ hidden }: { hidden: boolean }) {
+export function Sidebar() {
+  const { isOpenSidebar } = useSidebar();
+
   return (
     <Navbar
       width={{
@@ -9,7 +12,7 @@ export function NavbarBody({ hidden }: { hidden: boolean }) {
         lg: 400,
       }}
       p="xs"
-      hidden={hidden}
+      hidden={!isOpenSidebar}
     >
       <Navbar.Section component={ScrollArea} grow mx="-xs" px="xs">
         <NavbarLinkList />

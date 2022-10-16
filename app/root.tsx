@@ -18,8 +18,8 @@ import resetStyle from "~/styles/reset.css";
 import globalStyle from "~/styles/global.css";
 import fontStyle from "~/styles/font.css";
 import { setupMocks } from "../test/mocks";
-import { Layout } from "~/components/layout/Layout";
 import { useState } from "react";
+import { AppLayout } from "~/components/layout/AppLayout";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
@@ -82,9 +82,9 @@ export default function App() {
             <Links />
           </head>
           <body>
-            <Layout>
+            <AppLayout>
               <Outlet />
-            </Layout>
+            </AppLayout>
             <ScrollRestoration />
             <script
               dangerouslySetInnerHTML={{

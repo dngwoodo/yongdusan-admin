@@ -1,7 +1,7 @@
 import {
   ActionIcon,
   Group,
-  Header,
+  Header as DsHeader,
   MediaQuery,
   UnstyledButton,
   useMantineColorScheme,
@@ -12,19 +12,16 @@ import {
   IconMoonStars,
   IconSun,
 } from "@tabler/icons";
+import { useSidebar } from "~/components/layout/Layout";
 
-type Props = {
-  isOpenSidebar: boolean;
-  onOpenSidebar: () => void;
-};
-
-export default function NavbarHeader({ isOpenSidebar, onOpenSidebar }: Props) {
+export default function Header() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+  const { isOpenSidebar, onToggleSidebar } = useSidebar();
 
   return (
     <>
       <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-        <Header height={60} p="xs">
+        <DsHeader height={60} p="xs">
           <Group sx={{ height: "100%" }} px={20} position="apart">
             <p>yongdusan</p>
             <ActionIcon
@@ -39,13 +36,13 @@ export default function NavbarHeader({ isOpenSidebar, onOpenSidebar }: Props) {
               )}
             </ActionIcon>
           </Group>
-        </Header>
+        </DsHeader>
       </MediaQuery>
       <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-        <Header height={60} p="xs">
+        <DsHeader height={60} p="xs">
           <Group sx={{ height: "100%" }} px={20} position="apart">
             <UnstyledButton
-              onClick={() => onOpenSidebar()}
+              onClick={() => onToggleSidebar()}
               sx={(theme) => ({
                 borderRadius: theme.radius.sm,
                 color:
@@ -73,7 +70,7 @@ export default function NavbarHeader({ isOpenSidebar, onOpenSidebar }: Props) {
               )}
             </ActionIcon>
           </Group>
-        </Header>
+        </DsHeader>
       </MediaQuery>
     </>
   );
