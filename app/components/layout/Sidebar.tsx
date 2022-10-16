@@ -1,9 +1,9 @@
 import { Navbar, ScrollArea } from "@mantine/core";
-import { useSidebar } from "~/components/layout/context/Layout";
+import { useSidebarState } from "~/components/layout/context/Layout";
 import { NavbarLink } from "~/components/layout/context/NavbarLink";
 
 export function Sidebar() {
-  const { isOpenSidebar } = useSidebar();
+  const { isOpenSidebar } = useSidebarState();
 
   return (
     <Navbar

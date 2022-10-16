@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useMediaQuery } from "@mantine/hooks";
 import Header from "~/components/layout/Header";
 import { Sidebar } from "~/components/layout/Sidebar";
@@ -24,31 +24,50 @@ export function Layout({ children }: Props) {
     setIsOpenSidebar(true);
   }, [matches]);
 
+  const state = { isOpenSidebar };
+  const dispatch = useMemo(
+    () => ({ onToggleSidebar: handleToggleSidebar }),
+    []
+  );
+
   return (
-    <SidebarContext.Provider
-      value={{
-        isOpenSidebar,
-        onToggleSidebar: handleToggleSidebar,
-      }}
-    >
-      {children}
-    </SidebarContext.Provider>
+    <SidebarState.Provider value={state}>
+      <SidebarDispatch.Provider value={dispatch}>
+        {children}
+      </SidebarDispatch.Provider>
+    </SidebarState.Provider>
   );
 }
 
 type ProviderState = {
   isOpenSidebar: boolean;
+};
+
+const SidebarState = createContext<ProviderState | null>(null);
+SidebarState.displayName = "SidebarState";
+
+type ProviderDispatch = {
   onToggleSidebar: () => void;
 };
 
-const SidebarContext = createContext<ProviderState | null>(null);
-SidebarContext.displayName = "Sidebar";
+const SidebarDispatch = createContext<ProviderDispatch | null>(null);
+SidebarDispatch.displayName = "SidebarDispatch";
 
-export function useSidebar() {
-  const context = useContext(SidebarContext);
+export function useSidebarState() {
+  const context = useContext(SidebarState);
 
   if (!context) {
-    throw new Error("Check SidebarContext Provider");
+    throw new Error("Check SidebarState Provider");
+  }
+
+  return context;
+}
+
+export function useSidebarDispatch() {
+  const context = useContext(SidebarDispatch);
+
+  if (!context) {
+    throw new Error("Check SidebarDispatch Provider");
   }
 
   return context;

@@ -12,11 +12,15 @@ import {
   IconMoonStars,
   IconSun,
 } from "@tabler/icons";
-import { useSidebar } from "~/components/layout/context/Layout";
+import {
+  useSidebarDispatch,
+  useSidebarState,
+} from "~/components/layout/context/Layout";
 
 export default function Header() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-  const { isOpenSidebar, onToggleSidebar } = useSidebar();
+  const { isOpenSidebar } = useSidebarState();
+  const { onToggleSidebar } = useSidebarDispatch();
 
   return (
     <>
@@ -42,7 +46,7 @@ export default function Header() {
         <DsHeader height={60} p="xs">
           <Group sx={{ height: "100%" }} px={20} position="apart">
             <UnstyledButton
-              onClick={() => onToggleSidebar()}
+              onClick={onToggleSidebar}
               sx={(theme) => ({
                 borderRadius: theme.radius.sm,
                 color:
