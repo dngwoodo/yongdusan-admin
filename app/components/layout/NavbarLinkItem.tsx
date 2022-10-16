@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 import type { NavbarMenu } from "~/components/layout/NavbarLinkList";
 import { IconChevronRight } from "@tabler/icons";
-import { useNavbarLinkDispatch } from "~/components/layout/context/NavbarLink";
+import { useNavbarLinkDispatch } from "~/components/layout/context/navbar-link";
 import { useEffect } from "react";
 import { useFirstMountState } from "react-use";
 import { NavLink } from "@remix-run/react";

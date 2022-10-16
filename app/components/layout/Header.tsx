@@ -15,7 +15,7 @@ import {
 import {
   useSidebarDispatch,
   useSidebarState,
-} from "~/components/layout/context/Layout";
+} from "~/components/layout/context/layout";
 
 export default function Header() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
