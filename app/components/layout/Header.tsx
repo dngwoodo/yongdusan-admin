@@ -12,7 +12,7 @@ import {
   IconMoonStars,
   IconSun,
 } from "@tabler/icons";
-import { useSidebar } from "~/components/layout/Layout";
+import { useSidebar } from "~/components/layout/context/Layout";
 
 export default function Header() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();

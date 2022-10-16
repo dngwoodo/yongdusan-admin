@@ -1,6 +1,6 @@
 import { AppShell } from "@mantine/core";
 import type { ReactNode } from "react";
-import { Layout } from "~/components/layout/Layout";
+import { Layout } from "~/components/layout/context/Layout";
 
 type Props = {
   children: ReactNode;
