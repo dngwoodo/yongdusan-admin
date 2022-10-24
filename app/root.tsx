@@ -55,7 +55,7 @@ export async function loader() {
   };
 }
 
-export default function App() {
+export default async function App() {
   const data = useLoaderData();
   const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
 
@@ -63,7 +63,7 @@ export default function App() {
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
   if (data.ENV.REMIX_PUBLIC_API_MOCKING) {
-    setupMocks();
+    await setupMocks();
   }
 
   return (

@@ -21,13 +21,16 @@
     "@remix-run/react": "^1.6.5",
     "@remix-run/serve": "^1.6.5",
     "@tabler/icons": "^1.102.0",
-    "dayjs": "^1.11.5",
+    "dayjs": "^1.11.6",
+    "echarts": "^5.4.0",
+    "echarts-for-react": "^3.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-use": "^17.4.0",
     "tiny-invariant": "^1.2.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
     "@remix-run/dev": "^1.6.5",
     "@remix-run/eslint-config": "^1.6.5",
     "@testing-library/dom": "^8.16.0",

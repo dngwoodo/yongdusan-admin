@@ -1,15 +1,17 @@
 export async function setupMocks() {
   const isBrowser = typeof window !== "undefined";
 
+  console.log(isBrowser);
+
   if (isBrowser) {
-    import("./mswWorker").then(({ mswWorker }) => {
-      mswWorker.start();
-    });
+    const { mswWorker } = await import("./mswWorker");
+
+    await mswWorker.start();
 
     return;
   }
 
-  import("./mswServer").then(({ mswServer }) => {
-    mswServer.listen();
-  });
+  const { mswServer } = await import("./mswServer");
+
+  mswServer.listen();
 }
