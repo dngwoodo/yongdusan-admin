@@ -47,6 +47,10 @@ export const links: LinksFunction = () => {
 };
 
 export async function loader() {
+  if (process.env.REMIX_PUBLIC_API_MOCKING) {
+    await setupMocks();
+  }
+
   return {
     ENV: {
       APP_API_URL: process.env.APP_API_URL,
@@ -55,16 +59,12 @@ export async function loader() {
   };
 }
 
-export default async function App() {
+export default function App() {
   const data = useLoaderData();
   const [colorScheme, setColorScheme] = useState<ColorScheme>("light");
 
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
-
-  if (data.ENV.REMIX_PUBLIC_API_MOCKING) {
-    await setupMocks();
-  }
 
   return (
     <ColorSchemeProvider

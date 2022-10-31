@@ -3,14 +3,13 @@ import { faker } from "@faker-js/faker";
 const date = new Date();
 
 export const buildWeather = () => {
-  const newDate = new Date(date);
   return {
-    PartitionKey: newDate.setDate(newDate.getHours() + 1),
+    PartitionKey: new Date(date.setHours(date.getHours() + 1)),
     RowKey: String(faker.datatype.bigInt()),
     wind_deg: faker.datatype.number(),
     wind_speed: faker.datatype.number(),
     temperature: faker.datatype.float({
-      min: 0,
+      min: 35,
       max: 40,
       precision: 0.1,
     }),
