@@ -1,15 +1,15 @@
 import type { LoaderFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import { useFetcher, useLoaderData } from "@remix-run/react";
 import { useEffect, useState } from "react";
 import { RealTimeWeatherCard } from "~/components/card/RealTimeWeatherCard";
+import { loadWeather } from "~/apis/weather";
 
 // 데이터를 받아오는 코드
 export const loader: LoaderFunction = async () => {
-  const data = await fetch("http://localhost:3000/api/v1/weather", {
-    method: "GET",
-  });
+  const weather = await loadWeather();
 
-  return data.json();
+  return json(weather);
 };
 
 export default function WeatherPage() {

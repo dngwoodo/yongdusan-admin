@@ -19,7 +19,7 @@ export function RealTimeWeatherButtonGroup() {
       {WEATHER_INFORMATION.map(({ title, value }) => (
         <Button
           sx={{
-            width: "25%",
+            width: "33.3333%",
           }}
           key={value}
           variant={

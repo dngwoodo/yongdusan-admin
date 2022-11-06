@@ -11,8 +11,4 @@ export const WEATHER_INFORMATION = [
     title: "풍속",
     value: "windSpeed",
   },
-  {
-    title: "풍향",
-    value: "windDirection",
-  },
 ];

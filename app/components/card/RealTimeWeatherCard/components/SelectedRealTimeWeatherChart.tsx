@@ -1,31 +1,40 @@
 import { TemperatureChart } from "~/components/chart/TemperatureChart";
 import { HumidityChart } from "~/components/chart/HumidityChart";
 import { WindSpeedChart } from "~/components/chart/WindSpeed";
-import { WindDirectionChart } from "~/components/chart/WindDirection";
 import { Text } from "@mantine/core";
 import { useRealTimeWeatherCardState } from "~/components/card/RealTimeWeatherCard/context/RealTimeWeatherCardContext";
+import type { Weather } from "~/apis/weather";
 
 type Props = {
-  weather: any;
+  weather: Weather;
 };
 
 export const SelectedRealTimeWeatherChart = ({ weather }: Props) => {
   const { selectedWeatherInformation } = useRealTimeWeatherCardState();
 
   if (selectedWeatherInformation === "temperature") {
-    return <TemperatureChart weather={weather} />;
+    return (
+      <TemperatureChart
+        xData={weather.PartitionKey}
+        yData={weather.temperature}
+      />
+    );
   }
 
   if (selectedWeatherInformation === "humidity") {
-    return <HumidityChart weather={weather} />;
-  }
-
-  if (selectedWeatherInformation === "windDirection") {
-    return <WindDirectionChart weather={weather} />;
+    return (
+      <HumidityChart xData={weather.PartitionKey} yData={weather.humidity} />
+    );
   }
 
   if (selectedWeatherInformation === "windSpeed") {
-    return <WindSpeedChart weather={weather} />;
+    return (
+      <WindSpeedChart
+        xData={weather.PartitionKey}
+        yData={weather.wind_speed}
+        y1Data={weather.wind_deg_status}
+      />
+    );
   }
 
   return (

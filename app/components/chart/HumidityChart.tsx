@@ -5,7 +5,12 @@ import { buildWeather } from "../../../test/data/weather/buildWeather";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { DEFAULT_CHART_OPTIONS } from "~/components/chart/configs/defaultChartOptions";
 
-export function HumidityChart({ weather }: { weather: any }) {
+type Props = {
+  xData: string;
+  yData: number;
+};
+
+export function HumidityChart({ xData, yData }: Props) {
   const [options, setOptions] = useState<any>({
     ...DEFAULT_CHART_OPTIONS,
     dataset: {
@@ -14,7 +19,7 @@ export function HumidityChart({ weather }: { weather: any }) {
         .fill(0)
         .map(() => {
           const weather = buildWeather();
-          return [weather.PartitionKey, weather.temperature];
+          return [weather.PartitionKey, weather.humidity];
         }),
     },
     series: [
@@ -23,8 +28,8 @@ export function HumidityChart({ weather }: { weather: any }) {
         label: {
           ...DEFAULT_CHART_OPTIONS.series[0].label,
           formatter: (value: any) => {
-            const temperature = value.data[1];
-            return `${temperature}°C`;
+            const humidity = value.data[1];
+            return `${humidity}%`;
           },
         },
       },
@@ -33,8 +38,8 @@ export function HumidityChart({ weather }: { weather: any }) {
       ...DEFAULT_CHART_OPTIONS.tooltip,
       formatter: (value: any) => {
         dayjs.extend(localizedFormat);
-        const [time, temperature] = value[0].data;
-        return `${dayjs(time).format("lll")}: ${temperature}°C`;
+        const [time, humidity] = value[0].data;
+        return `${dayjs(time).format("lll")}: ${humidity}%`;
       },
     },
   });
@@ -46,11 +51,11 @@ export function HumidityChart({ weather }: { weather: any }) {
       return {
         ...prev,
         dataset: {
-          source: [...source, [weather.PartitionKey, weather.temperature]],
+          source: [...source, [xData, yData]],
         },
       };
     });
-  }, [weather]);
+  }, [xData, yData]);
 
   return <ECharts option={options} opts={{ renderer: "svg" }} />;
 }

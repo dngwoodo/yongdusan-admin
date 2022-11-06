@@ -5,7 +5,12 @@ import { buildWeather } from "../../../test/data/weather/buildWeather";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import { DEFAULT_CHART_OPTIONS } from "~/components/chart/configs/defaultChartOptions";
 
-export function TemperatureChart({ weather }: { weather: any }) {
+type Props = {
+  xData: string;
+  yData: number;
+};
+
+export function TemperatureChart({ xData, yData }: Props) {
   const [options, setOptions] = useState<any>({
     ...DEFAULT_CHART_OPTIONS,
     dataset: {
@@ -46,11 +51,11 @@ export function TemperatureChart({ weather }: { weather: any }) {
       return {
         ...prev,
         dataset: {
-          source: [...source, [weather.PartitionKey, weather.temperature]],
+          source: [...source, [xData, yData]],
         },
       };
     });
-  }, [weather]);
+  }, [xData, yData]);
 
   return <ECharts option={options} opts={{ renderer: "svg" }} />;
 }

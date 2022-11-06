@@ -15,8 +15,6 @@ export const DEFAULT_CHART_OPTIONS = {
   },
   yAxis: {
     type: "value",
-    min: -20,
-    max: 100,
     axisLine: {
       show: false,
     },

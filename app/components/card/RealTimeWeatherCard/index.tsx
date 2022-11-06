@@ -1,8 +1,9 @@
 import { Card, Title } from "@mantine/core";
 import { RealTimeWeatherCardContext } from "~/components/card/RealTimeWeatherCard/context/RealTimeWeatherCardContext";
+import type { Weather } from "~/apis/weather";
 
 type Props = {
-  weather: any;
+  weather: Weather;
 };
 
 export function RealTimeWeatherCard({ weather }: Props) {
