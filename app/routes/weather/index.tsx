@@ -1,10 +1,7 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { useFetcher, useLoaderData } from "@remix-run/react";
 import { useEffect, useState } from "react";
-import { Temperature } from "~/components/weather/temperature/Temperature";
-import { WindSpeed } from "~/components/weather/windSpeed/WindSpeed";
-import { WindDirection } from "~/components/weather/windDirection/WindDirection";
-import { Humidity } from "~/components/weather/humidity/Humidity";
+import { RealTimeWeatherCard } from "~/components/card/RealTimeWeatherCard";
 
 // 데이터를 받아오는 코드
 export const loader: LoaderFunction = async () => {
@@ -42,10 +39,7 @@ export default function WeatherPage() {
 
   return (
     <>
-      <Temperature weather={weather} />
-      <WindSpeed />
-      <WindDirection />
-      <Humidity />
+      <RealTimeWeatherCard weather={weather} />
     </>
   );
 }
