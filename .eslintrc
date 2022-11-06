@@ -10,5 +10,8 @@
     "jest": {
       "version": 27
     }
+  },
+  "rules": {
+    "react/jsx-pascal-case": "off"
   }
 }
