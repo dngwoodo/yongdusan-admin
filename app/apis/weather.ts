@@ -1,10 +1,11 @@
 export type Weather = {
   PartitionKey: string;
   RowKey: string;
-  wind_deg: number;
-  wind_speed: number;
-  temperature: number;
-  humidity: number;
+  date: string[];
+  wind_deg: number[];
+  wind_speed: number[];
+  temperature: number[];
+  humidity: number[];
   wind_deg_status:
     | "W"
     | "WSW"
@@ -21,7 +22,7 @@ export type Weather = {
     | "N"
     | "NNW"
     | "NW"
-    | "WNW";
+    | "WNW"[];
 };
 
 export type TodayWeather = {

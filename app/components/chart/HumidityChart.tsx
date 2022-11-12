@@ -1,26 +1,16 @@
 import ECharts from "echarts-for-react";
 import dayjs from "~/libs/date";
 import { useEffect, useState } from "react";
-import { buildWeather } from "../../../test/data/weather/buildWeather";
 import { DEFAULT_CHART_OPTIONS } from "~/components/chart/configs/defaultChartOptions";
 
 type Props = {
-  xData: string;
-  yData: number;
+  xData: string[];
+  yData: number[];
 };
 
 export function HumidityChart({ xData, yData }: Props) {
   const [options, setOptions] = useState<any>({
     ...DEFAULT_CHART_OPTIONS,
-    dataset: {
-      ...DEFAULT_CHART_OPTIONS.dataset,
-      source: Array(20)
-        .fill(0)
-        .map(() => {
-          const weather = buildWeather();
-          return [weather.PartitionKey, weather.humidity];
-        }),
-    },
     series: [
       {
         ...DEFAULT_CHART_OPTIONS.series[0],
@@ -44,12 +34,14 @@ export function HumidityChart({ xData, yData }: Props) {
 
   useEffect(() => {
     setOptions((prev: any) => {
-      const source = [...prev.dataset.source];
+      const source = xData.map((value, index) => {
+        return [value, yData[index]];
+      });
 
       return {
         ...prev,
         dataset: {
-          source: [...source, [xData, yData]],
+          source,
         },
       };
     });
