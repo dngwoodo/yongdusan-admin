@@ -11,3 +11,5 @@ export const mediaQueries = {
   tablet: mediaQuery(breakPoints.tablet), // 0 - 1024
   desktop: mediaQuery(breakPoints.desktop), // 0 - 1365
 };
+
+export const getMediaScreen = (mediaQuery: string) => `@media ${mediaQuery}`;
