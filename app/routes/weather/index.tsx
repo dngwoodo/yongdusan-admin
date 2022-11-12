@@ -1,28 +1,46 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useFetcher, useLoaderData } from "@remix-run/react";
+import type { TodayWeather, Weather } from "~/apis/weather";
+import { loadTodayWeather, loadWeather } from "~/apis/weather";
 import { useEffect, useState } from "react";
 import { RealTimeWeatherCard } from "~/components/card/RealTimeWeatherCard";
-import { loadWeather } from "~/apis/weather";
+import { RealTimeTodayWeatherCard } from "~/components/card/RealTimeTodayWeatherCard";
 
-// 데이터를 받아오는 코드
 export const loader: LoaderFunction = async () => {
-  const weather = await loadWeather();
+  const [weather, todayWeather] = await Promise.all([
+    loadWeather(),
+    loadTodayWeather(),
+  ]);
 
-  return json(weather);
+  return json({
+    weather,
+    todayWeather,
+  });
 };
 
 export default function WeatherPage() {
-  const loaderWeather = useLoaderData();
-  const [weather, setWeather] = useState(loaderWeather);
+  const { weather, todayWeather } = useLoaderData<{
+    weather: Weather;
+    todayWeather: TodayWeather;
+  }>();
+  const [data, setData] = useState({
+    weather,
+    todayWeather,
+  });
 
   const fetcher = useFetcher();
 
-  useEffect(() => setWeather(loaderWeather), [loaderWeather]);
+  useEffect(() => {
+    setData({
+      weather,
+      todayWeather,
+    });
+  }, [weather, todayWeather]);
 
   useEffect(() => {
     if (fetcher.data) {
-      setWeather(fetcher.data);
+      setData(fetcher.data);
     }
   }, [fetcher.data]);
 
@@ -39,7 +57,8 @@ export default function WeatherPage() {
 
   return (
     <>
-      <RealTimeWeatherCard weather={weather} />
+      <RealTimeTodayWeatherCard weather={data.todayWeather} />
+      <RealTimeWeatherCard weather={data.weather} />
     </>
   );
 }

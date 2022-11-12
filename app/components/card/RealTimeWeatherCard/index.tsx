@@ -1,6 +1,7 @@
-import { Card, Title } from "@mantine/core";
+import { Card } from "@mantine/core";
 import { RealTimeWeatherCardContext } from "~/components/card/RealTimeWeatherCard/context/RealTimeWeatherCardContext";
 import type { Weather } from "~/apis/weather";
+import { DashboardCard } from "~/components/card/DashboardCard";
 
 type Props = {
   weather: Weather;
@@ -9,20 +10,7 @@ type Props = {
 export function RealTimeWeatherCard({ weather }: Props) {
   return (
     <RealTimeWeatherCardContext>
-      <Card
-        shadow="sm"
-        p="lg"
-        radius="md"
-        withBorder
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "367px",
-        }}
-      >
-        <Title order={2} mb={16}>
-          실시간 날씨 정보
-        </Title>
+      <DashboardCard title="실시간 날씨 정보">
         <RealTimeWeatherCardContext.RealTimeWeatherButtonGroup />
         <Card.Section
           sx={{
@@ -34,7 +22,7 @@ export function RealTimeWeatherCard({ weather }: Props) {
             weather={weather}
           />
         </Card.Section>
-      </Card>
+      </DashboardCard>
     </RealTimeWeatherCardContext>
   );
 }
