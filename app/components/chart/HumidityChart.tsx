@@ -1,8 +1,7 @@
 import ECharts from "echarts-for-react";
-import dayjs from "dayjs";
+import dayjs from "~/libs/date";
 import { useEffect, useState } from "react";
 import { buildWeather } from "../../../test/data/weather/buildWeather";
-import localizedFormat from "dayjs/plugin/localizedFormat";
 import { DEFAULT_CHART_OPTIONS } from "~/components/chart/configs/defaultChartOptions";
 
 type Props = {
@@ -37,7 +36,6 @@ export function HumidityChart({ xData, yData }: Props) {
     tooltip: {
       ...DEFAULT_CHART_OPTIONS.tooltip,
       formatter: (value: any) => {
-        dayjs.extend(localizedFormat);
         const [time, humidity] = value[0].data;
         return `${dayjs(time).format("lll")}: ${humidity}%`;
       },

@@ -20,6 +20,7 @@ import fontStyle from "~/styles/font.css";
 import { setupMocks } from "../test/mocks";
 import { useState } from "react";
 import { AppLayout } from "~/components/layout/AppLayout";
+import "~/libs/date";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

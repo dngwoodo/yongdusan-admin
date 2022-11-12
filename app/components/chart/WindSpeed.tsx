@@ -1,10 +1,10 @@
 import ECharts from "echarts-for-react";
-import dayjs from "dayjs";
+import dayjs from "~/libs/date";
 import { useEffect, useState } from "react";
 import { buildWeather } from "../../../test/data/weather/buildWeather";
-import localizedFormat from "dayjs/plugin/localizedFormat";
 import { DEFAULT_CHART_OPTIONS } from "~/components/chart/configs/defaultChartOptions";
 import type { Weather } from "~/apis/weather";
+import { DIRECTION_MAP } from "~/fixtures/weather/directionMap";
 
 type Props = {
   xData: string;
@@ -55,7 +55,6 @@ export function WindSpeedChart({ xData, yData, y1Data }: Props) {
     tooltip: {
       ...DEFAULT_CHART_OPTIONS.tooltip,
       formatter: (value: any) => {
-        dayjs.extend(localizedFormat);
         const [time, windSpeed, windDirection] = value[0].data;
         return [
           `${dayjs(time).format("lll")}: `,
@@ -82,30 +81,6 @@ export function WindSpeedChart({ xData, yData, y1Data }: Props) {
   return <ECharts option={options} opts={{ renderer: "svg" }} />;
 }
 
-// 풍향에 따른 각도 데이터
-const directionMap = {};
-[
-  "W",
-  "WSW",
-  "SW",
-  "SSW",
-  "S",
-  "SSE",
-  "SE",
-  "ESE",
-  "E",
-  "ENE",
-  "NE",
-  "NNE",
-  "N",
-  "NNW",
-  "NW",
-  "WNW",
-].forEach((name, index) => {
-  // @ts-ignore
-  directionMap[name] = (Math.PI / 8) * index;
-});
-
 const renderArrow = (_: any, api: any) => {
   const arrowSize = 18;
   // api.value(0) <- weather.PartitionKey
@@ -124,7 +99,7 @@ const renderArrow = (_: any, api: any) => {
     },
     position,
     // @ts-ignore
-    rotation: directionMap[api.value(2)], // arrow 를 각도에 따라 돌린다.
+    rotation: DIRECTION_MAP[api.value(2)], // arrow 를 각도에 따라 돌린다.
     style: api.style({
       stroke: "#555",
       lineWidth: 1,
