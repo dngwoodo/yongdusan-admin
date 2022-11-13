@@ -15,8 +15,6 @@ G
 app/global.d.ts,9/7/9740e7aee64aec04e4e61b23cc5cf4449bc78bbd
 S
 #app/components/layout/AppLayout.tsx,1/6/16c05d8c3dc12a785008f176a894b1ed165b350a
-I
-app/routes/index.test.tsx,9/f/9f8b899d9b765450fb0e681f166535b4a586c692
 P
  app/components/layout/Header.tsx,a/d/ad810795f8e4fd333f8893e6f2f6c3103e870c08
 =
@@ -52,7 +50,5 @@ f
 6app/components/card/RealTimeTodayWeatherCard/index.tsx,e/8/e8aa7e3abe36b967a693b0f7ccc89b17f312c080
 Š
 Zapp/components/card/RealTimeTodayWeatherCard/components/RealTimeTodayHumidityCard/indx.tsx,b/5/b50357783b9ce04ce6af563a8822f7f9634af33c
-†
-Vapp/components/card/RealTimeTodayWeatherCard/components/RealTimeTodayWindCard/indx.tsx,d/b/db6ef4cfe6576a7d8b7694648a89e925dc338ed5
 O
 app/hooks/card/useCardStyles.ts,3/2/321728a523acb2c5120aa5f854a0b863b70699a3

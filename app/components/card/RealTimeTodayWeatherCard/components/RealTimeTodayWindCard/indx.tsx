@@ -2,7 +2,6 @@ import { Card, createStyles, Flex, Image, Text } from "@mantine/core";
 import { useCardStyles } from "~/hooks/card/useCardStyles";
 import type { TodayWeather } from "~/apis/weather";
 import arrow from "~/assets/arrow.png";
-import { DIRECTION_MAP } from "~/fixtures/weather/directionMap";
 
 type Props = {
   weather: TodayWeather;
@@ -10,7 +9,7 @@ type Props = {
 
 export function RealTimeTodayWindCard({ weather }: Props) {
   const { classes: commonCardClasses } = useCardStyles();
-  const { classes } = useStyles(weather.wind_deg_status);
+  const { classes } = useStyles(weather.wind_deg);
 
   return (
     <Card
@@ -33,7 +32,7 @@ export function RealTimeTodayWindCard({ weather }: Props) {
   );
 }
 
-const useStyles = (windDegStatus: TodayWeather["wind_deg_status"]) => {
+const useStyles = (windDeg: TodayWeather["wind_deg"]) => {
   return createStyles({
     todayWeatherInformationWrapper: {
       marginRight: "8px",
@@ -44,7 +43,7 @@ const useStyles = (windDegStatus: TodayWeather["wind_deg_status"]) => {
       },
     },
     todayWeatherInformationImage: {
-      transform: `rotate(${DIRECTION_MAP[windDegStatus] * 100}deg)`,
+      transform: `rotate(${windDeg}deg)`,
     },
   })();
 };
