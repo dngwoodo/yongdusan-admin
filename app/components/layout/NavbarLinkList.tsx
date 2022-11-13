@@ -54,8 +54,8 @@ const links: NavbarMenu[] = [
     icon: <IconSunHigh />,
     initiallyOpened: true,
     subLinks: [
-      { label: "Weather", link: "/weather" },
-      { label: "Fine dust data", link: "/find-dust" },
+      { label: "날씨 정보", link: "/weather" },
+      { label: "특정 날씨 정보", link: "/period-weather" },
     ],
   },
   {
