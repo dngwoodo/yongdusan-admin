@@ -4,6 +4,7 @@ import type { CardProps } from "@mantine/core/lib/Card/Card";
 import { useCardStyles } from "~/hooks/card/useCardStyles";
 
 type Props = {
+  title: string;
   children: ReactNode;
 } & import("@mantine/utils").PolymorphicComponentProps<"div", CardProps>;
 

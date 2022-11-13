@@ -1,8 +1,12 @@
 import type { ActionFunction } from "@remix-run/node";
-import { json, redirect } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import "dayjs/locale/ko";
-import dayjs from "dayjs";
+import dayjs from "~/libs/date";
 import { PeriodWeatherForm } from "~/components/form/PeriodWeatherForm";
+import { loadPeriodWeather } from "~/apis/weather";
+import { PeriodWeatherCards } from "~/components/card/PeriodWeatherCards";
+import type { Dimensions, Source } from "~/utils/getSource";
+import { getDimensions, getSource } from "~/utils/getSource";
 
 export type ActionData = {
   formError?: {};
@@ -14,6 +18,11 @@ export type ActionData = {
     weatherInformation: string[];
     dates: Date[] | null[];
   };
+};
+
+export type ActionChartData = {
+  source: Source[];
+  dimensions: Dimensions[];
 };
 
 const badRequest = (data: ActionData) => json(data, { status: 400 });
@@ -57,9 +66,7 @@ export const action: ActionFunction = async ({ request }) => {
   const dates =
     actionData.dates === ""
       ? [null, null]
-      : actionData.dates
-          .split(" - ")
-          .map((date) => new Date(dayjs(date).format("YYYY-MM-DD")));
+      : actionData.dates.split(" - ").map((date) => new Date(date));
 
   // 필드 에러 생성
   const fieldErrors = {
@@ -77,13 +84,29 @@ export const action: ActionFunction = async ({ request }) => {
     return badRequest({ fieldErrors, fields });
   }
 
-  return redirect("/period-weather?index");
+  const [start, end] = dates;
+  const periodWeather = await loadPeriodWeather(
+    start ? dayjs(start).format("YYYY-MM-DD") : dayjs().format("YYYY-MM-DD"),
+    end ? dayjs(end).format("YYYY-MM-DD") : dayjs().format("YYYY-MM-DD"),
+    actionData.weatherInformation
+  );
+
+  console.log(periodWeather);
+
+  const source = getSource(periodWeather);
+  const dimensions = getDimensions(periodWeather);
+
+  return json<ActionChartData>({
+    source,
+    dimensions,
+  });
 };
 
 export default function PeriodWeatherPage() {
   return (
     <>
       <PeriodWeatherForm />
+      <PeriodWeatherCards />
     </>
   );
 }

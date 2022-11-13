@@ -28,8 +28,6 @@ Q
 !app/fixtures/styles/mediaQuery.ts,a/6/a600018da52f198def814d1f32170ebd7dd658aa
 T
 $app/fixtures/weather/directionMap.ts,8/b/8b8ea123620e16e31788b7b19e34854945a76f97
-[
-+app/components/card/DashboardCard/index.tsx,7/b/7b1f84a38fbe00c19ef9856f65145fe16c7b788d
 ‹
 [app/components/card/RealTimeTodayWeatherCard/components/RealTimeTodayFineDustCard/index.tsx,6/4/64bd4f6698536297a2e17fea7eeb4a4116b450b8
 Š
@@ -38,22 +36,10 @@ f
 6app/components/card/RealTimeTodayWeatherCard/index.tsx,e/8/e8aa7e3abe36b967a693b0f7ccc89b17f312c080
 Š
 Zapp/components/card/RealTimeTodayWeatherCard/components/RealTimeTodayHumidityCard/indx.tsx,b/5/b50357783b9ce04ce6af563a8822f7f9634af33c
-O
-app/hooks/card/useCardStyles.ts,3/2/321728a523acb2c5120aa5f854a0b863b70699a3
-Q
-!test/data/weather/buildWeather.ts,f/0/f0f4efe3a5d1b57674c005625ec965d5709cdc08
-O
-test/mocks/handlers/weather.tsx,c/c/cc2feef48ee47ba2ddd62ce053941fac2364a8ab
 a
 1app/components/card/RealTimeWeatherCard/index.tsx,9/d/9d21aea17d6530024b95d96bfb68fcbc6f9d8a3b
 ƒ
 Sapp/components/card/RealTimeWeatherCard/components/SelectedRealTimeWeatherChart.tsx,5/1/512bd0936848218b5863c5474f3618a820ec5524
-W
-'app/components/chart/WindSpeedChart.tsx,c/9/c928c8592ec751df23f15b2ccf28dd0deeed9944
-I
-app/routes/index.test.tsx,9/f/9f8b899d9b765450fb0e681f166535b4a586c692
-c
-3app/components/chart/configs/defaultChartOptions.ts,0/5/0538583cb0daf487abbed81888ac417de6061125
 S
 #app/components/layout/AppLayout.tsx,1/6/16c05d8c3dc12a785008f176a894b1ed165b350a
 D
@@ -68,9 +54,11 @@ P
  app/components/layout/Header.tsx,a/d/ad810795f8e4fd333f8893e6f2f6c3103e870c08
 X
 (app/components/layout/context/layout.tsx,a/0/a0a94d67c3250613f66ac5fe8a2381590375d8ca
-C
-app/apis/weather.ts,4/4/44d9f4e19e3c27c37c151cc5c48ba938256fdcf4
 †
 Vapp/components/card/RealTimeTodayWeatherCard/components/RealTimeTodayWindCard/indx.tsx,d/b/db6ef4cfe6576a7d8b7694648a89e925dc338ed5
-V
-&test/data/weather/buildTodayWeather.ts,b/8/b803e0293ee4cb23f7bc4c97eaa73aa3847aa4d1
+X
+(app/components/layout/NavbarLinkList.tsx,9/e/9ef7817eda375ec45c19b65308cf81632236b48b
+L
+app/routes/weather/index.tsx,a/a/aaa06c0ac360de7369df6698f4bc856887960caa
+L
+test/mocks/handlers/index.ts,e/7/e74b22a72cc7eecfb2674df449ecb05732684c7b

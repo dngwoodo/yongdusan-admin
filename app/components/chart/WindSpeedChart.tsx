@@ -71,7 +71,7 @@ export function WindSpeedChart({ xData, yData, y1Data }: Props) {
 
 const renderArrow = (_: any, api: any) => {
   const arrowSize = 18;
-  // api.value(0) <- weather.PartitionKey
+  // api.value(0) <- weather.date
   // api.value(1) <- weather.wind_speed
   // api.value(2) <- weather.wind_deg_status
   const position = api.coord([api.value(0), api.value(1)]);

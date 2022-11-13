@@ -11,35 +11,33 @@ export function PeriodWeatherForm() {
   const isSubmitting = transition.state === "submitting"; // action 함수 호출동안 submitting 상태이다.
 
   return (
-    <>
-      <Form method="post" action="/period-weather?index">
-        <MultiSelect
-          data={weatherInformation}
-          searchable
-          defaultValue={["temperature"]}
-          placeholder="원하는 날씨 정보를 선택해주세요."
-          label="날씨 정보"
-          withAsterisk
-          name="weatherInformation"
-          error={actionData?.fieldErrors?.weatherInformation}
-          mb={10}
-        />
-        <DateRangePicker
-          locale="ko"
-          label="날짜 선택"
-          placeholder="날짜를 선택해주세요."
-          withAsterisk
-          allowSingleDateInRange
-          name="dates"
-          defaultValue={[now, now]}
-          error={actionData?.fieldErrors?.dates}
-          mb={10}
-        />
-        <Button type="submit" loading={isSubmitting}>
-          그래프 추가
-        </Button>
-      </Form>
-    </>
+    <Form method="post" action="/period-weather?index">
+      <MultiSelect
+        data={weatherInformation}
+        searchable
+        defaultValue={["temperature"]}
+        placeholder="원하는 날씨 정보를 선택해주세요."
+        label="날씨 정보"
+        withAsterisk
+        name="weatherInformation"
+        error={actionData?.fieldErrors?.weatherInformation}
+        mb={10}
+      />
+      <DateRangePicker
+        locale="ko"
+        label="날짜 선택"
+        placeholder="날짜를 선택해주세요."
+        withAsterisk
+        allowSingleDateInRange
+        name="dates"
+        defaultValue={[now, now]}
+        error={actionData?.fieldErrors?.dates}
+        mb={10}
+      />
+      <Button type="submit" loading={isSubmitting} mb={16}>
+        그래프 추가
+      </Button>
+    </Form>
   );
 }
 
