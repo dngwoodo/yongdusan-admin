@@ -18,11 +18,23 @@ export function PeriodWeatherCards() {
     }
   }, [actionChartData]);
 
+  const handleClickRemoveCard = (index: number) => {
+    setPeriodWeather((prev) => {
+      const newPrev = [...prev];
+      newPrev.splice(index, 1);
+
+      return newPrev;
+    });
+  };
+
   return (
     <List listStyleType="none">
       {periodWeather.map((value, index) => (
         <List.Item key={index} className={classes.itemWrapper}>
-          <PeriodWeatherCard data={value} />
+          <PeriodWeatherCard
+            data={value}
+            onClickRemoveCard={() => handleClickRemoveCard(index)}
+          />
         </List.Item>
       ))}
     </List>

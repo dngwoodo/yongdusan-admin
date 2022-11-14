@@ -2,10 +2,15 @@ import type { ActionChartData } from "~/routes/period-weather";
 import { PeriodWeatherChart } from "~/components/chart/PeriodWeatherChart";
 import { DashboardCard } from "~/components/card/DashboardCard";
 import dayjs from "~/libs/date";
+import { CloseButton, createStyles } from "@mantine/core";
 
-type Props = { data: ActionChartData };
+type Props = {
+  data: ActionChartData;
+  onClickRemoveCard: () => void;
+};
 
-export default function PeriodWeatherCard({ data }: Props) {
+export default function PeriodWeatherCard({ data, onClickRemoveCard }: Props) {
+  const { classes } = useStyles();
   // TODO: 타입 오류 해결 필요
   const getTitle = () => {
     // @ts-ignore
@@ -17,7 +22,7 @@ export default function PeriodWeatherCard({ data }: Props) {
       "YYYY년 MM월 DD일 (dd)"
     );
 
-    if (startDate || endDate) {
+    if (startDate && endDate) {
       return `${startDate} ~ ${endDate}`;
     }
 
@@ -26,7 +31,20 @@ export default function PeriodWeatherCard({ data }: Props) {
 
   return (
     <DashboardCard title={getTitle()}>
+      <CloseButton
+        aria-label="Close period weather card"
+        className={classes.closeButton}
+        onClick={onClickRemoveCard}
+      />
       <PeriodWeatherChart data={data} />
     </DashboardCard>
   );
 }
+
+const useStyles = createStyles({
+  closeButton: {
+    position: "absolute",
+    top: "10px",
+    right: "10px",
+  },
+});
