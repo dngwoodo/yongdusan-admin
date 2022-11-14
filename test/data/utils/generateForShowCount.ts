@@ -1,4 +1,4 @@
-export const generateForShowCount = (
+export const generateForShowCount = <T>(
   showCount: number,
-  getMockData: () => number | string
+  getMockData: () => T
 ) => Array(showCount).fill(0).map(getMockData);

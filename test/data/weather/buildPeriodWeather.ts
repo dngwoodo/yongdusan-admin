@@ -1,11 +1,14 @@
 import { faker } from "@faker-js/faker";
+import type { PeriodWeather, TodayWeather } from "~/apis/weather";
 import { generateForShowCount } from "../utils/generateForShowCount";
 
 const date = new Date();
 
 const SHOW_COUNT = 300;
 
-export const buildPeriodWeather = () => {
+export const buildPeriodWeather = (
+  overrides?: Partial<PeriodWeather>
+): PeriodWeather => {
   return {
     PartitionKey: String(new Date()),
     date: generateForShowCount(SHOW_COUNT, () =>
@@ -41,7 +44,7 @@ export const buildPeriodWeather = () => {
             "WNW",
           ],
           1
-        )[0]
+        )[0] as TodayWeather["wind_deg_status"]
     ),
     wind_speed: generateForShowCount(SHOW_COUNT, () =>
       faker.datatype.number({
@@ -68,5 +71,6 @@ export const buildPeriodWeather = () => {
     ultra_find_dust: generateForShowCount(SHOW_COUNT, () =>
       faker.datatype.number({ min: 10, max: 100 })
     ),
+    ...overrides,
   };
 };

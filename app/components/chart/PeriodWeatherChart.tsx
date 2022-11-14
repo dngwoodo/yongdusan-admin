@@ -134,7 +134,10 @@ const SERIES = {
       x: "date",
       y: "wind_speed",
     },
-    renderItem: (_: any, api: any) => {
+    renderItem: (
+      _: echarts.CustomSeriesRenderItemParams,
+      api: echarts.CustomSeriesRenderItemAPI
+    ) => {
       const arrowSize = 18;
       const position = api.coord([api.value("date"), api.value("wind_speed")]);
 

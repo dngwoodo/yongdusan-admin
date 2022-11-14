@@ -64,7 +64,7 @@ export type PeriodWeather = {
   date?: string[];
   wind_deg?: number[];
   wind_speed?: number[];
-  wind_deg_status?:
+  wind_deg_status?: (
     | "W"
     | "WSW"
     | "SW"
@@ -80,7 +80,8 @@ export type PeriodWeather = {
     | "N"
     | "NNW"
     | "NW"
-    | "WNW"[];
+    | "WNW"
+  )[];
   temperature?: number[];
   humidity?: number[];
   find_dust?: number[];
