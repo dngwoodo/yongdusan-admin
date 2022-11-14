@@ -9,7 +9,7 @@ type Props = {
 };
 
 export function PeriodWeatherChart({ data }: Props) {
-  const options = useRef<any>({
+  const options = useRef<echarts.EChartsOption>({
     ...DEFAULT_CHART_OPTIONS,
     grid: {
       ...DEFAULT_CHART_OPTIONS.grid,
@@ -34,7 +34,7 @@ export function PeriodWeatherChart({ data }: Props) {
     ],
     dataset: {
       dimensions: data.dimensions,
-      source: data.source,
+      source: data.source as any,
     },
     yAxis: [
       {
@@ -49,7 +49,7 @@ export function PeriodWeatherChart({ data }: Props) {
 
         return SERIES[dimension];
       })
-      .filter(Boolean),
+      .filter(Boolean) as any,
     tooltip: {
       ...DEFAULT_CHART_OPTIONS.tooltip,
       formatter: (value: any) => {
@@ -151,7 +151,6 @@ const SERIES = {
           height: arrowSize,
         },
         position,
-        // @ts-ignore
         rotation: api.value("wind_deg"), // arrow 를 각도에 따라 돌린다.
         style: api.style({
           stroke: "#555",

@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 
-export const DEFAULT_CHART_OPTIONS = {
+export const DEFAULT_CHART_OPTIONS: echarts.EChartsOption = {
   xAxis: {
     type: "category",
     axisLine: {

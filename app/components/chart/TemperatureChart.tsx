@@ -9,12 +9,14 @@ type Props = {
 };
 
 export function TemperatureChart({ xData, yData }: Props) {
-  const [options, setOptions] = useState<any>({
+  const [options, setOptions] = useState<echarts.EChartsOption>({
     ...DEFAULT_CHART_OPTIONS,
     series: [
       {
+        /* @ts-ignore */
         ...DEFAULT_CHART_OPTIONS.series[0],
         label: {
+          /* @ts-ignore */
           ...DEFAULT_CHART_OPTIONS.series[0].label,
           formatter: (value: any) => {
             const temperature = value.data[1];

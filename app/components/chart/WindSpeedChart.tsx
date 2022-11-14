@@ -12,12 +12,14 @@ type Props = {
 };
 
 export function WindSpeedChart({ xData, yData, y1Data }: Props) {
-  const [options, setOptions] = useState<any>({
+  const [options, setOptions] = useState<echarts.EChartsOption>({
     ...DEFAULT_CHART_OPTIONS,
     series: [
       {
+        /* @ts-ignore */
         ...DEFAULT_CHART_OPTIONS.series[0],
         label: {
+          /* @ts-ignore */
           ...DEFAULT_CHART_OPTIONS.series[0].label,
           formatter: (value: any) => {
             const windSpeed = value.data[1];
