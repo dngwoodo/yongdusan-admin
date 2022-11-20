@@ -1,3 +1,4 @@
 import { weatherHandler } from "./weather";
+import { visitorCount } from "./visitor";
 
-export const handlers = [...weatherHandler];
+export const handlers = [...weatherHandler, ...visitorCount];

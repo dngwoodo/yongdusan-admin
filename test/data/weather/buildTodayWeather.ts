@@ -3,6 +3,7 @@ import { faker } from "@faker-js/faker";
 const date = new Date();
 
 export const buildTodayWeather = () => {
+  const nextHourDate = String(new Date(date.setHours(date.getHours() + 1)));
   const getTemperature = () =>
     faker.datatype.float({
       min: 35,
@@ -11,8 +12,8 @@ export const buildTodayWeather = () => {
     });
 
   return {
-    PartitionKey: String(new Date(date.setHours(date.getHours() + 1))),
-    date: String(new Date(date.setHours(date.getHours() + 1))),
+    PartitionKey: nextHourDate,
+    date: nextHourDate,
     RowKey: String(faker.datatype.bigInt()),
     wind_deg: faker.datatype.number({
       min: 0,
