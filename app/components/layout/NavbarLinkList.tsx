@@ -45,7 +45,7 @@ const links: NavbarMenu[] = [
     label: "방문객현황",
     icon: <IconUserPlus />,
     subLinks: [
-      { label: "People count", link: "/count" },
+      { label: "People count", link: "/visitor" },
       { label: "Application", link: "/application" },
     ],
   },
