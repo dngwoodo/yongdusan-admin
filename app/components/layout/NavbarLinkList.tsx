@@ -42,11 +42,11 @@ export type NavbarMenu = {
 
 const links: NavbarMenu[] = [
   {
-    label: "방문객현황",
+    label: "방문객 데이터",
     icon: <IconUserPlus />,
     subLinks: [
-      { label: "People count", link: "/visitor" },
-      { label: "Application", link: "/application" },
+      { label: "방문객 현황", link: "/visitor" },
+      { label: "어플리케이션 사용자 현황", link: "/application" },
     ],
   },
   {
@@ -54,8 +54,8 @@ const links: NavbarMenu[] = [
     icon: <IconSunHigh />,
     initiallyOpened: true,
     subLinks: [
-      { label: "날씨 정보", link: "/weather" },
-      { label: "특정 날씨 정보", link: "/period-weather" },
+      { label: "실시간 날씨정보", link: "/weather" },
+      { label: "상세 날씨정보 조회", link: "/period-weather" },
     ],
   },
   {
